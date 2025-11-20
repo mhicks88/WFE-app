@@ -1,35 +1,42 @@
 import { z } from "zod";
 
-// Zod schema for runtime validation of bottle data
-export const BottleSchema = z.object({
+// Zod schema for barrel classification rules
+export const BarrelRuleSchema = z.object({
+  id: z.string(),
+  minCode: z.number(),
+  maxCode: z.number(),
+  patternLabel: z.string(), // e.g. "90xx-91xx", "17xx", "321xx"
+  mashbillType: z.string(),
+  entryProofCategory: z.string().nullable(),
+  notes: z.string().nullable(),
+});
+
+// Type inferred from schema
+export type BarrelRule = z.infer<typeof BarrelRuleSchema>;
+
+// Zod schema for known Willett releases (public data)
+export const WillettReleaseSchema = z.object({
   id: z.string(),
   barrelCode: z.string(),
   labelName: z.string(),
   ageStatement: z.string().optional(),
   proof: z.number().optional(),
-  selectedFor: z.string().optional(),
+  selectedFor: z.string().optional(), // Store or barrel pick group
   city: z.string().optional(),
   state: z.string().optional(),
-  acquiredDate: z.string().optional(),
-  pricePaid: z.number().optional(),
-  rating: z.number().min(0).max(10).optional(),
-  tastingNotes: z.string().optional(),
-  comments: z.string().optional(),
+  releaseYear: z.number().optional(), // When it was released
 });
 
-// Type inferred from schema for the base bottle data (before classification)
-export type BottleData = z.infer<typeof BottleSchema>;
+// Type inferred from schema
+export type WillettRelease = z.infer<typeof WillettReleaseSchema>;
 
-// Extended type that includes computed classification fields
-export type Bottle = BottleData & {
+// Type for barrel decoder result
+export type BarrelDecodeResult = {
+  barrelCode: string;
+  matched: boolean;
+  rule: BarrelRule | null;
   mashbillType: string;
   entryProofCategory: string | null;
-  classificationNotes: string | null;
-};
-
-// Type for the classification result
-export type BarrelClassification = {
-  mashbillType: string;
-  entryProofCategory: string | null;
-  classificationNotes: string | null;
+  patternLabel: string | null;
+  notes: string | null;
 };

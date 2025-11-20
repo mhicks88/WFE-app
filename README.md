@@ -1,22 +1,46 @@
-# Willett Single Barrel Lookup
+# Willett Barrel Decoder
 
-A fast, mobile-friendly web app for tracking and classifying Willett Family Estate single barrel bottlings. Automatically identifies mashbill type and entry proof category from barrel codes using Willett's internal numbering schemes.
+A public reference tool for decoding Willett Family Estate barrel codes. Instantly identify mashbill types, entry proof categories, and barrel characteristics from Willett's internal numbering schemes.
+
+## Purpose
+
+This is a **neutral reference database** and decoder for Willett barrel codes - not a personal collection tracker. It helps whiskey enthusiasts, collectors, and retailers understand what a Willett barrel code means.
 
 ## Features
 
-- 🔍 **Real-time search** across barrel codes, stores, cities, and mashbill types
-- 🏷️ **Automatic classification** of 60+ barrel code ranges
-- 📊 **Track details**: proof, age, price, ratings, tasting notes
-- 📱 **Mobile-responsive** design with dark theme
-- ⚡ **Static generation** for instant page loads
-- ✅ **Runtime validation** with Zod schemas
+- 🔍 **Barrel Decoder** - Enter any barrel code to instantly identify its classification
+- 📋 **Browse Rules** - Searchable database of 62 barrel code ranges and their classifications
+- 📚 **Known Releases** - Reference database of known Willett Family Estate single barrel releases
+- 📱 **Mobile-Responsive** - Clean, dark-themed interface that works on all devices
+- ⚡ **Lightning Fast** - Static generation for instant page loads
+- 🎯 **Public Reference** - No login, no tracking, just information
+
+## What is a Barrel Code?
+
+Willett Family Estate uses internal numbering schemes to track barrels. The barrel code reveals:
+- **Mashbill Type** (e.g., high rye bourbon, wheated bourbon, low rye rye)
+- **Entry Proof Category** (high or low entry proof)
+- **Special Notes** (e.g., aged in Hoffmeister barrels, char level, experimental batches)
+
+## Examples
+
+| Barrel Code | Mashbill Type | Entry Proof | Notes |
+|-------------|---------------|-------------|-------|
+| 9081 | wheated mashbill bourbon | - | - |
+| 17123 | original mashbill | - | - |
+| 20361 | high rye rye | - | - |
+| 32145 | four grain (55/12/18/15) | - | American oak |
+| 38310 | high rye bourbon | - | char 1 |
+| 8612 | rye | - | Hoffmeister barrels |
+| 4728 | high rye bourbon | - | - |
+| 6450 | high corn | high entry proof | - |
 
 ## Tech Stack
 
-- **Next.js 15** (App Router, TypeScript)
+- **Next.js 15** (App Router, TypeScript, Server Components)
 - **React 19** (Server + Client Components)
-- **Tailwind CSS** (Dark theme, responsive)
-- **Zod** (Runtime validation)
+- **Tailwind CSS** (Dark theme, responsive design)
+- **Zod** (Runtime data validation)
 
 ## Getting Started
 
@@ -27,6 +51,10 @@ A fast, mobile-friendly web app for tracking and classifying Willett Family Esta
 ### Installation
 
 ```bash
+# Clone the repository
+git clone https://github.com/YOUR-USERNAME/WFE-app.git
+cd WFE-app
+
 # Install dependencies
 npm install
 
@@ -34,7 +62,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see the app.
+Open [http://localhost:3000](http://localhost:3000) to use the decoder.
 
 ### Build for Production
 
@@ -51,138 +79,99 @@ npm start
 ```
 WFE-app/
 ├── app/
-│   ├── bottle/[id]/
-│   │   ├── page.tsx          # Bottle detail page
-│   │   └── not-found.tsx     # 404 for missing bottles
-│   ├── layout.tsx             # Root layout
-│   ├── page.tsx               # Home page (server component)
-│   └── globals.css            # Tailwind styles
+│   ├── api/decode/           # API route for barrel decoding
+│   ├── rules/                # Browse rules page
+│   ├── releases/             # Known releases page
+│   ├── layout.tsx            # Root layout
+│   └── page.tsx              # Home page (decoder)
 ├── components/
-│   └── BottleSearch.tsx       # Client-side search UI
+│   ├── BarrelDecoder.tsx     # Main decoder UI
+│   ├── RulesBrowser.tsx      # Rules browsing UI
+│   └── ReleasesBrowser.tsx   # Releases browsing UI
 ├── data/
-│   └── willett-barrels.json   # Bottle data (edit this!)
+│   ├── barrel-rules.json     # 62 classification rules
+│   └── releases.json         # Known public releases
 ├── lib/
-│   ├── types.ts               # TypeScript types & Zod schemas
-│   ├── classifyBarrel.ts      # Barrel classification logic
-│   ├── bottles.ts             # Data access layer
-│   ├── classifyBarrel.test.ts # Classification tests
-│   └── bottles.test.ts        # Data loading tests
+│   ├── types.ts              # TypeScript types & Zod schemas
+│   └── decoder.ts            # Data access & decoding logic
 └── README.md
 ```
 
-## Managing Your Bottle Collection
+## Data Files
 
-### Adding a New Bottle
+### barrel-rules.json
 
-Edit `data/willett-barrels.json` and add a new entry:
+Contains 62 barrel classification rules with:
+- `id` - Unique identifier
+- `minCode` / `maxCode` - Barrel code range
+- `patternLabel` - Human-readable pattern (e.g., "90xx–91xx")
+- `mashbillType` - Classification (e.g., "wheated mashbill bourbon")
+- `entryProofCategory` - Entry proof level (if applicable)
+- `notes` - Special characteristics (if applicable)
 
-```json
-{
-  "id": "barrel-12345",
-  "barrelCode": "12345",
-  "labelName": "Willett Family Estate Bourbon",
-  "ageStatement": "7 year",
-  "proof": 125.6,
-  "selectedFor": "My Local Store",
-  "city": "San Francisco",
-  "state": "CA",
-  "acquiredDate": "2024-03-20",
-  "pricePaid": 149.99,
-  "rating": 9.0,
-  "tastingNotes": "Rich vanilla, oak, and dark fruit...",
-  "comments": "Exceptional bottle!"
-}
-```
+### releases.json
 
-**Required fields:**
-- `id` - Unique identifier (e.g., "barrel-12345")
-- `barrelCode` - The barrel number (e.g., "12345")
-- `labelName` - Bottle name
-
-**Optional fields:**
-- `ageStatement` - Age (e.g., "7 year")
-- `proof` - Alcohol proof (number)
-- `selectedFor` - Store/pick name
+Reference database of known Willett releases with:
+- `id` - Unique identifier
+- `barrelCode` - The barrel number
+- `labelName` - Bottle label
+- `ageStatement`, `proof` - Specs (if known)
+- `selectedFor` - Store or barrel pick group
 - `city`, `state` - Location
-- `acquiredDate` - Purchase date (YYYY-MM-DD)
-- `pricePaid` - Price (number)
-- `rating` - Your rating (0-10)
-- `tastingNotes` - Flavor notes
-- `comments` - Additional notes
+- `releaseYear` - Year released
 
-### Data Validation
-
-The app validates all bottles against the Zod schema. If validation fails, you'll see a detailed error message:
-
-```
-Validation failed for 2 bottle(s) in willett-barrels.json:
-
-  Entry 5 (id: "barrel-test"):
-    - barrelCode: Required
-    - rating: Number must be less than or equal to 10
-```
-
-### Testing Your Data
-
-Run the validation tests:
-
-```bash
-# Test data loading and validation
-npx tsx lib/bottles.test.ts
-
-# Test barrel classification
-npx tsx lib/classifyBarrel.test.ts
-```
-
-## Barrel Classification
-
-The app automatically classifies barrels using Willett's internal numbering schemes:
-
-### Classification Rules
-
-- **3-digit codes** (90-989): Early ranges (e.g., 321 → original mashbill)
-- **4-digit codes** (1000-9799): Most common (e.g., 9081 → wheated bourbon)
-- **5-digit codes** (10500-38399): Extended series (e.g., 32101 → four grain)
-
-### Examples
-
-| Barrel Code | Mashbill Type | Entry Proof | Notes |
-|-------------|---------------|-------------|-------|
-| 9081 | wheated mashbill bourbon | - | - |
-| 17123 | original mashbill | - | - |
-| 20361 | high rye rye | - | - |
-| 32101 | four grain (55/12/18/15) | - | American oak |
-| 38310 | high rye bourbon | - | char 1 |
-| 8612 | rye | - | Hoffmeister barrels |
-| 6450 | high corn | high entry proof | - |
+## Adding Data
 
 ### Adding New Classification Rules
 
-Edit `lib/classifyBarrel.ts` and add a new range check:
+Edit `data/barrel-rules.json` and add a new rule:
 
-```typescript
-if (inRange(40000, 40099)) {
-  return {
-    mashbillType: "your mashbill type",
-    entryProofCategory: "high entry proof", // or null
-    classificationNotes: "special notes", // or null
-  };
+```json
+{
+  "id": "rule-063",
+  "minCode": 40000,
+  "maxCode": 40099,
+  "patternLabel": "400xx",
+  "mashbillType": "your mashbill type",
+  "entryProofCategory": null,
+  "notes": null
 }
 ```
 
-Always add more specific ranges (5-digit) before less specific ones (4-digit, 3-digit).
+More specific ranges (smaller range, exact matches) take precedence.
 
-## Search Features
+### Adding Known Releases
 
-The search bar filters bottles by:
-- Barrel code
-- Store/pick name (`selectedFor`)
-- City
-- State
-- Mashbill type
-- Label name
+Edit `data/releases.json` and add a new release:
 
-Search is **case-insensitive** and matches **partial strings**.
+```json
+{
+  "id": "release-4728",
+  "barrelCode": "4728",
+  "labelName": "Willett Family Estate Bourbon",
+  "ageStatement": "6 year",
+  "proof": 120.5,
+  "selectedFor": "Store Name",
+  "city": "City",
+  "state": "State",
+  "releaseYear": 2024
+}
+```
+
+The decoder will automatically classify it using the barrel code.
+
+## How It Works
+
+1. **User enters a barrel code** (e.g., "9081")
+2. **API normalizes to integer** (9081)
+3. **Searches barrel-rules.json** for matching range
+4. **Returns classification** with mashbill type and notes
+5. **Displays result** with all relevant information
+
+The decoder prioritizes:
+- Exact matches first (minCode === maxCode)
+- Smaller ranges before larger ranges
+- First match wins
 
 ## Deployment
 
@@ -194,45 +183,42 @@ Search is **case-insensitive** and matches **partial strings**.
 2. Import the repository in Vercel
 3. Deploy (zero configuration needed!)
 
-The app uses static generation, so all pages are pre-rendered at build time for maximum performance.
-
-## Development
-
-### Run Tests
-
-```bash
-# Test barrel classification
-npx tsx lib/classifyBarrel.test.ts
-
-# Test bottle data loading
-npx tsx lib/bottles.test.ts
-```
-
-### Lint & Type Check
-
-```bash
-# Lint
-npm run lint
-
-# Type check (runs during build)
-npm run build
-```
+All pages use static generation for maximum performance.
 
 ## Performance
 
-- **Home page**: 1.44 kB
-- **Detail pages**: 165 B each
+- **Home page (decoder)**: 1.62 kB
+- **Browse Rules page**: 1.42 kB
+- **Known Releases page**: 1.36 kB
+- **API route**: 123 B
 - **First Load JS**: 102 kB (shared)
-- **Build time**: ~17s for 13 bottles
-- **Static generation**: All pages pre-rendered
+- **Build time**: ~8s for 62 rules + 11 releases
+
+## Contributing
+
+This is a community reference tool. Contributions welcome:
+
+1. **New barrel rules** - If you know of undocumented ranges
+2. **Known releases** - Add public barrel picks to the database
+3. **Corrections** - Fix any incorrect classifications
+4. **Improvements** - UI/UX enhancements
+
+Please open an issue or PR on GitHub.
+
+## Data Sources
+
+Barrel classification rules compiled from:
+- Public Willett barrel pick information
+- Community knowledge and documentation
+- Verified single barrel releases
 
 ## License
 
 MIT
 
-## Contributing
+## Disclaimer
 
-Feel free to fork and customize for your own collection!
+This is an unofficial community tool. Not affiliated with Willett Distillery or Kentucky Bourbon Distillers. Classification information is provided as-is for reference purposes.
 
 ---
 

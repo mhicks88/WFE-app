@@ -1,0 +1,123 @@
+[
+  {
+    "id": "release-9081",
+    "barrelCode": "9081",
+    "labelName": "Willett Family Estate 4 Year Rye",
+    "ageStatement": "4 year",
+    "proof": 110.4,
+    "selectedFor": "Oak Barrel Winecraft",
+    "city": "Berkeley",
+    "state": "CA",
+    "releaseYear": 2023
+  },
+  {
+    "id": "release-17123",
+    "barrelCode": "17123",
+    "labelName": "Willett Family Estate 8 Year Bourbon",
+    "ageStatement": "8 year",
+    "proof": 127.8,
+    "selectedFor": "Bottle Barn",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "releaseYear": 2023
+  },
+  {
+    "id": "release-20361",
+    "barrelCode": "20361",
+    "labelName": "Willett Family Estate Bourbon",
+    "ageStatement": "6 year",
+    "proof": 118.2,
+    "selectedFor": "Total Wine & More",
+    "city": "San Jose",
+    "state": "CA",
+    "releaseYear": 2024
+  },
+  {
+    "id": "release-9327",
+    "barrelCode": "9327",
+    "labelName": "Willett Family Estate Rye",
+    "ageStatement": "5 year",
+    "proof": 113.6,
+    "selectedFor": "K&L Wine Merchants",
+    "city": "San Francisco",
+    "state": "CA",
+    "releaseYear": 2023
+  },
+  {
+    "id": "release-3241",
+    "barrelCode": "3241",
+    "labelName": "Willett Family Estate Wheated Bourbon",
+    "ageStatement": "7 year",
+    "proof": 121.4,
+    "selectedFor": "Cask Store",
+    "city": "San Francisco",
+    "state": "CA",
+    "releaseYear": 2024
+  },
+  {
+    "id": "release-7707",
+    "barrelCode": "7707",
+    "labelName": "Willett Family Estate 6 Year Rye",
+    "ageStatement": "6 year",
+    "proof": 115.8,
+    "selectedFor": "Whiskey Guild",
+    "city": "Oakland",
+    "state": "CA",
+    "releaseYear": 2023
+  },
+  {
+    "id": "release-12258",
+    "barrelCode": "12258",
+    "labelName": "Willett Family Estate Bourbon",
+    "ageStatement": "7 year",
+    "proof": 124.2,
+    "selectedFor": "Bourbon & Branch",
+    "city": "San Francisco",
+    "state": "CA",
+    "releaseYear": 2024
+  },
+  {
+    "id": "release-5195",
+    "barrelCode": "5195",
+    "labelName": "Willett Family Estate High Corn Bourbon",
+    "ageStatement": "9 year",
+    "proof": 116.4,
+    "selectedFor": "Healthy Spirits",
+    "city": "San Francisco",
+    "state": "CA",
+    "releaseYear": 2023
+  },
+  {
+    "id": "release-8612",
+    "barrelCode": "8612",
+    "labelName": "Willett Family Estate Rye (Hoffmeister)",
+    "ageStatement": "8 year",
+    "proof": 122.6,
+    "selectedFor": "The Wine Club",
+    "city": "Santa Ana",
+    "state": "CA",
+    "releaseYear": 2024
+  },
+  {
+    "id": "release-11225",
+    "barrelCode": "11225",
+    "labelName": "Willett Family Estate Experimental Wheater",
+    "ageStatement": "6 year",
+    "proof": 119.8,
+    "selectedFor": "Whiskey Specialists",
+    "city": "Louisville",
+    "state": "KY",
+    "releaseYear": 2024
+  },
+  {
+    "id": "release-32145",
+    "barrelCode": "32145",
+    "labelName": "Willett Family Estate Four Grain",
+    "ageStatement": "7 year",
+    "proof": 114.6,
+    "selectedFor": "Bourbon Society",
+    "city": "Lexington",
+    "state": "KY",
+    "releaseYear": 2024
+  }
+]
