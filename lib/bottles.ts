@@ -6,25 +6,65 @@ import { classifyBarrel } from "./classifyBarrel";
 /**
  * Reads and parses the willett-barrels.json file
  * @returns Array of validated bottle data
+ * @throws Error with detailed validation failures if any entries are invalid
  */
 function loadBottleData(): BottleData[] {
   const dataPath = join(process.cwd(), "data", "willett-barrels.json");
-  const fileContents = readFileSync(dataPath, "utf-8");
-  const rawData = JSON.parse(fileContents);
 
-  // Validate each bottle against the Zod schema
-  if (!Array.isArray(rawData)) {
-    throw new Error("willett-barrels.json must contain an array of bottles");
+  // Read and parse JSON file
+  let rawData: unknown;
+  try {
+    const fileContents = readFileSync(dataPath, "utf-8");
+    rawData = JSON.parse(fileContents);
+  } catch (error) {
+    throw new Error(
+      `Failed to read or parse willett-barrels.json: ${error instanceof Error ? error.message : String(error)}`
+    );
   }
 
-  return rawData.map((item, index) => {
+  // Validate that root is an array
+  if (!Array.isArray(rawData)) {
+    throw new Error(
+      "Invalid data format: willett-barrels.json must contain an array of bottles"
+    );
+  }
+
+  // Validate each bottle and collect all errors
+  const validatedBottles: BottleData[] = [];
+  const validationErrors: Array<{ index: number; id?: string; errors: string[] }> = [];
+
+  rawData.forEach((item, index) => {
     const result = BottleSchema.safeParse(item);
     if (!result.success) {
-      console.error(`Validation error at index ${index}:`, result.error);
-      throw new Error(`Invalid bottle data at index ${index}`);
+      // Extract readable error messages from Zod
+      const errors = result.error.issues.map(
+        (issue) => `${issue.path.join(".")}: ${issue.message}`
+      );
+      validationErrors.push({
+        index,
+        id: typeof item === "object" && item !== null && "id" in item
+          ? String(item.id)
+          : undefined,
+        errors,
+      });
+    } else {
+      validatedBottles.push(result.data);
     }
-    return result.data;
   });
+
+  // If there were any validation errors, throw a comprehensive error
+  if (validationErrors.length > 0) {
+    const errorMessages = validationErrors.map((err) => {
+      const idInfo = err.id ? ` (id: "${err.id}")` : "";
+      return `  Entry ${err.index}${idInfo}:\n    - ${err.errors.join("\n    - ")}`;
+    });
+
+    throw new Error(
+      `Validation failed for ${validationErrors.length} bottle(s) in willett-barrels.json:\n\n${errorMessages.join("\n\n")}\n\nPlease fix these entries and try again.`
+    );
+  }
+
+  return validatedBottles;
 }
 
 /**
