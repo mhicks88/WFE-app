@@ -3,8 +3,41 @@ import type { BarrelClassification } from "./types";
 /**
  * Classifies a Willett barrel based on its barrel code using internal numbering schemes.
  *
+ * Implements 60+ classification rules covering Willett Family Estate's barrel numbering system,
+ * including 3-digit (9x-98x), 4-digit (10xx-97xx), and 5-digit (105xx-383xx) ranges.
+ *
  * @param barrelCode - The barrel code as a string (e.g., "9081", "17123", "20361")
  * @returns Classification object with mashbillType, entryProofCategory, and classificationNotes
+ *
+ * @example
+ * // Wheated bourbon from 4-digit range
+ * classifyBarrel("9081")
+ * // Returns: { mashbillType: "wheated mashbill bourbon", entryProofCategory: null, classificationNotes: null }
+ *
+ * @example
+ * // Original mashbill from 5-digit range
+ * classifyBarrel("17123")
+ * // Returns: { mashbillType: "original mashbill", entryProofCategory: null, classificationNotes: null }
+ *
+ * @example
+ * // High rye rye from extended series
+ * classifyBarrel("20361")
+ * // Returns: { mashbillType: "high rye rye", entryProofCategory: null, classificationNotes: null }
+ *
+ * @example
+ * // Four grain with special barrel treatment
+ * classifyBarrel("32101")
+ * // Returns: { mashbillType: "four grain mashbill (55/12/18/15)", entryProofCategory: null, classificationNotes: "aged in American oak" }
+ *
+ * @example
+ * // High rye bourbon with char level noted
+ * classifyBarrel("38310")
+ * // Returns: { mashbillType: "high rye bourbon", entryProofCategory: null, classificationNotes: "char 1" }
+ *
+ * @example
+ * // Barrel code outside known ranges
+ * classifyBarrel("99999")
+ * // Returns: { mashbillType: "unknown", entryProofCategory: null, classificationNotes: "no classification rule for this barrel range" }
  */
 export function classifyBarrel(barrelCode: string): BarrelClassification {
   // Normalize barrel code to integer
@@ -102,6 +135,15 @@ export function classifyBarrel(barrelCode: string): BarrelClassification {
   if (inRange(17200, 17299)) {
     return {
       mashbillType: "original mashbill bourbon",
+      entryProofCategory: null,
+      classificationNotes: null,
+    };
+  }
+
+  // Broader catch-all for other 5-digit 17xxx codes
+  if (inRange(17000, 17999)) {
+    return {
+      mashbillType: "original mashbill",
       entryProofCategory: null,
       classificationNotes: null,
     };
