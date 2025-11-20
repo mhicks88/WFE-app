@@ -1,0 +1,130 @@
+[
+  {
+    "id": "high_corn_low_entry",
+    "displayName": "High Corn Low Entry",
+    "whiskeyType": "bourbon",
+    "grainBill": {
+      "corn": 79,
+      "rye": 7,
+      "wheat": 0,
+      "maltedBarley": 14
+    },
+    "entryProof": 103,
+    "status": "discontinued",
+    "sourceDistillery": "Willett Distillery",
+    "tastingNotes": "Very sweet high-corn bourbon with maple/honey and toasted marshmallow notes, featuring rounded oak from the lower entry proof.",
+    "notes": "Used primarily in the 65x-72x barrel range. This mashbill was discontinued but represents some of Willett's earliest post-2012 distillate."
+  },
+  {
+    "id": "high_corn_high_entry",
+    "displayName": "High Corn High Entry",
+    "whiskeyType": "bourbon",
+    "grainBill": {
+      "corn": 79,
+      "rye": 7,
+      "wheat": 0,
+      "maltedBarley": 14
+    },
+    "entryProof": 125,
+    "status": "active",
+    "sourceDistillery": "Willett Distillery",
+    "tastingNotes": "Rich and sweet with intense caramel, maple and marshmallow sweetness, complemented by stronger oak spice and tannin from the higher entry proof.",
+    "notes": "Same grain bill as the low entry version but barreled at 125 proof, resulting in more oak influence and structure."
+  },
+  {
+    "id": "original_bourbon",
+    "displayName": "Original Bourbon",
+    "whiskeyType": "bourbon",
+    "grainBill": {
+      "corn": 72,
+      "rye": 13,
+      "wheat": 0,
+      "maltedBarley": 15
+    },
+    "entryProof": 125,
+    "status": "active",
+    "sourceDistillery": "Willett Distillery",
+    "tastingNotes": "Classic Kentucky bourbon profile with vanilla, caramel, brown sugar, baking spice, cherry and dark fruit notes, balanced oak.",
+    "notes": "This is Willett's core bourbon mashbill, used across many barrel ranges. It represents a traditional bourbon recipe with moderate rye content."
+  },
+  {
+    "id": "wheated_bourbon",
+    "displayName": "Wheated Bourbon",
+    "whiskeyType": "wheated bourbon",
+    "grainBill": {
+      "corn": 65,
+      "rye": 0,
+      "wheat": 20,
+      "maltedBarley": 15
+    },
+    "entryProof": 115,
+    "status": "active",
+    "sourceDistillery": "Willett Distillery",
+    "tastingNotes": "Dessert-leaning profile with caramel sauce, cinnamon-cereal, chocolate, and rich fruit notes; softer spice due to wheat instead of rye.",
+    "notes": "Wheated bourbons replace the rye with wheat, creating a sweeter, softer character. Some experimental variations include cured oak finishes."
+  },
+  {
+    "id": "high_rye_bourbon",
+    "displayName": "High Rye Bourbon",
+    "whiskeyType": "bourbon",
+    "grainBill": {
+      "corn": 52,
+      "rye": 38,
+      "wheat": 0,
+      "maltedBarley": 10
+    },
+    "entryProof": 125,
+    "status": "active",
+    "sourceDistillery": "Willett Distillery",
+    "tastingNotes": "Spicier, more herbal and peppery than the original mashbill; still has caramel and vanilla sweetness, plus baking spice and sometimes citrus peel.",
+    "notes": "With 38% rye, this is a high-rye bourbon that bridges the gap between traditional bourbon and rye whiskey character."
+  },
+  {
+    "id": "high_rye_rye",
+    "displayName": "High Rye Rye",
+    "whiskeyType": "straight rye whiskey",
+    "grainBill": {
+      "corn": 11,
+      "rye": 74,
+      "wheat": 0,
+      "maltedBarley": 15
+    },
+    "entryProof": 110,
+    "status": "active",
+    "sourceDistillery": "Willett Distillery",
+    "tastingNotes": "Bold rye spice with brandied/dark cherry, cola, cinnamon and baking spice, featuring a long, assertive finish.",
+    "notes": "This is Willett's flagship rye mashbill with 74% rye grain, producing an intensely spicy and complex rye whiskey."
+  },
+  {
+    "id": "low_rye_rye",
+    "displayName": "Low Rye Rye",
+    "whiskeyType": "straight rye whiskey",
+    "grainBill": {
+      "corn": 34,
+      "rye": 51,
+      "wheat": 0,
+      "maltedBarley": 15
+    },
+    "entryProof": 110,
+    "status": "active",
+    "sourceDistillery": "Willett Distillery",
+    "tastingNotes": "Gentler rye with a mix of vanilla and caramel sweetness alongside rye herbal and minty notes; less aggressive spice than the high rye rye.",
+    "notes": "With 51% rye and 34% corn, this barely-legal rye whiskey offers more sweetness and approachability than the high-rye version."
+  },
+  {
+    "id": "four_grain_bourbon",
+    "displayName": "Four Grain Bourbon",
+    "whiskeyType": "four-grain bourbon",
+    "grainBill": {
+      "corn": 55,
+      "rye": 12,
+      "wheat": 18,
+      "maltedBarley": 15
+    },
+    "entryProof": null,
+    "status": "experimental",
+    "sourceDistillery": "Willett Distillery",
+    "tastingNotes": "Layered cereal and bread notes from all four grains, medium sweetness, and balanced baking spice.",
+    "notes": "A unique four-grain mashbill (55/12/18/15) using corn, rye, wheat, and malted barley. Found primarily in the 321xx range with American oak barrels."
+  }
+]

@@ -4,433 +4,495 @@
     "patternLabel": "9x-12x",
     "minCode": 90,
     "maxCode": 129,
-    "description": "low rye rye"
+    "mashbillId": "low_rye_rye",
+    "notes": null
   },
   {
     "id": "rule-002",
     "patternLabel": "14x-20x",
     "minCode": 140,
     "maxCode": 209,
-    "description": "original mashbill"
+    "mashbillId": "original_bourbon",
+    "notes": null
   },
   {
     "id": "rule-003",
     "patternLabel": "22x-23x",
     "minCode": 220,
     "maxCode": 239,
-    "description": "low rye rye"
+    "mashbillId": "low_rye_rye",
+    "notes": null
   },
   {
     "id": "rule-004",
     "patternLabel": "39x-40x",
     "minCode": 390,
     "maxCode": 409,
-    "description": "original mashbill"
+    "mashbillId": "original_bourbon",
+    "notes": null
   },
   {
     "id": "rule-005",
     "patternLabel": "42x",
     "minCode": 420,
     "maxCode": 429,
-    "description": "high rye rye"
+    "mashbillId": "high_rye_rye",
+    "notes": null
   },
   {
     "id": "rule-006",
     "patternLabel": "60x-63x",
     "minCode": 600,
     "maxCode": 639,
-    "description": "low rye rye"
+    "mashbillId": "low_rye_rye",
+    "notes": null
   },
   {
     "id": "rule-007",
     "patternLabel": "65x-72x",
     "minCode": 650,
     "maxCode": 729,
-    "description": "high corn, low entry proof"
+    "mashbillId": "high_corn_low_entry",
+    "notes": null
   },
   {
     "id": "rule-008",
     "patternLabel": "98x",
     "minCode": 980,
     "maxCode": 989,
-    "description": "high rye rye"
+    "mashbillId": "high_rye_rye",
+    "notes": null
   },
   {
     "id": "rule-009",
     "patternLabel": "10xx",
     "minCode": 1000,
     "maxCode": 1099,
-    "description": "original mashbill"
+    "mashbillId": "original_bourbon",
+    "notes": null
   },
   {
     "id": "rule-010",
     "patternLabel": "14xx",
     "minCode": 1400,
     "maxCode": 1499,
-    "description": "low rye rye"
+    "mashbillId": "low_rye_rye",
+    "notes": null
   },
   {
     "id": "rule-011",
     "patternLabel": "17xx",
     "minCode": 1700,
     "maxCode": 1799,
-    "description": "original mashbill"
+    "mashbillId": "original_bourbon",
+    "notes": null
   },
   {
     "id": "rule-012",
     "patternLabel": "19xx-21xx",
     "minCode": 1900,
     "maxCode": 2199,
-    "description": "high corn high entry proof"
+    "mashbillId": "high_corn_high_entry",
+    "notes": null
   },
   {
     "id": "rule-013",
     "patternLabel": "22xx-25xx",
     "minCode": 2200,
     "maxCode": 2599,
-    "description": "high rye rye"
+    "mashbillId": "high_rye_rye",
+    "notes": null
   },
   {
     "id": "rule-014",
     "patternLabel": "26xx-28xx",
     "minCode": 2600,
     "maxCode": 2899,
-    "description": "orignal mashbill bourbon"
+    "mashbillId": "original_bourbon",
+    "notes": null
   },
   {
     "id": "rule-015",
     "patternLabel": "30xx",
     "minCode": 3000,
     "maxCode": 3099,
-    "description": "original mashbill bourbon"
+    "mashbillId": "original_bourbon",
+    "notes": null
   },
   {
     "id": "rule-016",
     "patternLabel": "31xx",
     "minCode": 3100,
     "maxCode": 3199,
-    "description": "high rye mashbill bourbon"
+    "mashbillId": "high_rye_bourbon",
+    "notes": null
   },
   {
     "id": "rule-017",
     "patternLabel": "32xx-357x",
     "minCode": 3200,
     "maxCode": 3579,
-    "description": "wheated mashbill bourbon"
+    "mashbillId": "wheated_bourbon",
+    "notes": null
   },
   {
     "id": "rule-018",
     "patternLabel": "358x-36xx",
     "minCode": 3580,
     "maxCode": 3699,
-    "description": "low rye rye"
+    "mashbillId": "low_rye_rye",
+    "notes": null
   },
   {
     "id": "rule-019",
     "patternLabel": "38xx-44xx",
     "minCode": 3800,
     "maxCode": 4499,
-    "description": "original mashbill bourbon"
+    "mashbillId": "original_bourbon",
+    "notes": null
   },
   {
     "id": "rule-020",
     "patternLabel": "47xx-48xx",
     "minCode": 4700,
     "maxCode": 4899,
-    "description": "high rye bourbon"
+    "mashbillId": "high_rye_bourbon",
+    "notes": null
   },
   {
     "id": "rule-021",
     "patternLabel": "50xx-51xx",
     "minCode": 5000,
     "maxCode": 5199,
-    "description": "original mashbill bourbon"
+    "mashbillId": "original_bourbon",
+    "notes": null
   },
   {
     "id": "rule-022",
     "patternLabel": "519x-5284",
     "minCode": 5190,
     "maxCode": 5284,
-    "description": "high corn bourbon"
+    "mashbillId": "high_corn_high_entry",
+    "notes": null
   },
   {
     "id": "rule-023",
     "patternLabel": "5285-53xx",
     "minCode": 5285,
     "maxCode": 5399,
-    "description": "high rye bourbon"
+    "mashbillId": "high_rye_bourbon",
+    "notes": null
   },
   {
     "id": "rule-024",
     "patternLabel": "55xx-59xx",
     "minCode": 5500,
     "maxCode": 5999,
-    "description": "original mashbill bourbon"
+    "mashbillId": "original_bourbon",
+    "notes": null
   },
   {
     "id": "rule-025",
     "patternLabel": "59xx-604?",
     "minCode": 5900,
     "maxCode": 6049,
-    "description": "high rye bourbon"
+    "mashbillId": "high_rye_bourbon",
+    "notes": null
   },
   {
     "id": "rule-026",
     "patternLabel": "604?-62xx",
     "minCode": 6040,
     "maxCode": 6299,
-    "description": "high rye rye"
+    "mashbillId": "high_rye_rye",
+    "notes": null
   },
   {
     "id": "rule-027",
     "patternLabel": "64xx-65xx",
     "minCode": 6400,
     "maxCode": 6599,
-    "description": "high corn high entry proof"
+    "mashbillId": "high_corn_high_entry",
+    "notes": null
   },
   {
     "id": "rule-028",
     "patternLabel": "66xx-67xx",
     "minCode": 6600,
     "maxCode": 6799,
-    "description": "original mashbill bourbon"
+    "mashbillId": "original_bourbon",
+    "notes": null
   },
   {
     "id": "rule-029",
     "patternLabel": "70xx-71xx",
     "minCode": 7000,
     "maxCode": 7199,
-    "description": "original mashbill bourbon"
+    "mashbillId": "original_bourbon",
+    "notes": null
   },
   {
     "id": "rule-030",
     "patternLabel": "72xx",
     "minCode": 7200,
     "maxCode": 7299,
-    "description": "wheated mashbill bourbon"
+    "mashbillId": "wheated_bourbon",
+    "notes": null
   },
   {
     "id": "rule-031",
     "patternLabel": "74xx",
     "minCode": 7400,
     "maxCode": 7499,
-    "description": "original mashbill bourbon"
+    "mashbillId": "original_bourbon",
+    "notes": null
   },
   {
     "id": "rule-032",
     "patternLabel": "770x",
     "minCode": 7700,
     "maxCode": 7709,
-    "description": "high rye rye"
+    "mashbillId": "high_rye_rye",
+    "notes": null
   },
   {
     "id": "rule-033",
     "patternLabel": "771x",
     "minCode": 7710,
     "maxCode": 7719,
-    "description": "??? mashbill bourbon"
+    "mashbillId": null,
+    "notes": "Unknown bourbon mashbill"
   },
   {
     "id": "rule-034",
     "patternLabel": "81xx-82xx",
     "minCode": 8100,
     "maxCode": 8299,
-    "description": "original mashbill bourbon"
+    "mashbillId": "original_bourbon",
+    "notes": null
   },
   {
     "id": "rule-035",
     "patternLabel": "86xx",
     "minCode": 8600,
     "maxCode": 8699,
-    "description": "rye aged in Hoffmeister barrels"
+    "mashbillId": "low_rye_rye",
+    "notes": "Aged in Hoffmeister barrels (German cooperage)"
   },
   {
     "id": "rule-036",
     "patternLabel": "90xx-91xx",
     "minCode": 9000,
     "maxCode": 9199,
-    "description": "wheated mashbill bourbon"
+    "mashbillId": "wheated_bourbon",
+    "notes": null
   },
   {
     "id": "rule-037",
     "patternLabel": "93xx-95xx",
     "minCode": 9300,
     "maxCode": 9599,
-    "description": "high rye rye"
+    "mashbillId": "high_rye_rye",
+    "notes": null
   },
   {
     "id": "rule-038",
     "patternLabel": "97xx",
     "minCode": 9700,
     "maxCode": 9799,
-    "description": "low rye rye"
+    "mashbillId": "low_rye_rye",
+    "notes": null
   },
   {
     "id": "rule-039",
     "patternLabel": "(10)5xx",
     "minCode": 10500,
     "maxCode": 10599,
-    "description": "original mashbill bourbon"
+    "mashbillId": "original_bourbon",
+    "notes": null
   },
   {
     "id": "rule-040",
     "patternLabel": "(1)12xx",
     "minCode": 11200,
     "maxCode": 11299,
-    "description": "an experimental wheater"
+    "mashbillId": "wheated_bourbon",
+    "notes": "Experimental wheater"
   },
   {
     "id": "rule-041",
     "patternLabel": "(1)1855",
     "minCode": 11855,
     "maxCode": 11855,
-    "description": "an original mashbill bourbon"
+    "mashbillId": "original_bourbon",
+    "notes": "Specific single barrel"
   },
   {
     "id": "rule-042",
     "patternLabel": "(1)20xx",
     "minCode": 12000,
     "maxCode": 12099,
-    "description": "wheated mashbill bourbon"
+    "mashbillId": "wheated_bourbon",
+    "notes": null
   },
   {
     "id": "rule-043",
     "patternLabel": "(1)22xx",
     "minCode": 12200,
     "maxCode": 12299,
-    "description": "high rye rye"
+    "mashbillId": "high_rye_rye",
+    "notes": "Ambiguous - some barrels in this range are Original Bourbon (see rule-044)"
   },
   {
     "id": "rule-044",
     "patternLabel": "(1)22xx",
     "minCode": 12200,
     "maxCode": 12299,
-    "description": "original mashbill bourbon"
+    "mashbillId": "original_bourbon",
+    "notes": "Ambiguous - some barrels in this range are High Rye Rye (see rule-043)"
   },
   {
     "id": "rule-045",
     "patternLabel": "(1)23xx",
     "minCode": 12300,
     "maxCode": 12399,
-    "description": "wheated mashbill bourbon"
+    "mashbillId": "wheated_bourbon",
+    "notes": null
   },
   {
     "id": "rule-046",
     "patternLabel": "(1)25xx",
     "minCode": 12500,
     "maxCode": 12599,
-    "description": "original mashbill bourbon"
+    "mashbillId": "original_bourbon",
+    "notes": null
   },
   {
     "id": "rule-047",
     "patternLabel": "(1)30xx",
     "minCode": 13000,
     "maxCode": 13099,
-    "description": "high corn high entry proof"
+    "mashbillId": "high_corn_high_entry",
+    "notes": null
   },
   {
     "id": "rule-048",
     "patternLabel": "(1)32xx",
     "minCode": 13200,
     "maxCode": 13299,
-    "description": "original mashbill bourbon"
+    "mashbillId": "original_bourbon",
+    "notes": null
   },
   {
     "id": "rule-049",
     "patternLabel": "(1)72xx",
     "minCode": 17200,
     "maxCode": 17299,
-    "description": "original mashbill bourbon"
+    "mashbillId": "original_bourbon",
+    "notes": null
   },
   {
     "id": "rule-050",
     "patternLabel": "(1)82xx",
     "minCode": 18200,
     "maxCode": 18299,
-    "description": "high corn high entry proof"
+    "mashbillId": "high_corn_high_entry",
+    "notes": null
   },
   {
     "id": "rule-051",
     "patternLabel": "(1)93xx",
     "minCode": 19300,
     "maxCode": 19399,
-    "description": "high rye rye"
+    "mashbillId": "high_rye_rye",
+    "notes": null
   },
   {
     "id": "rule-052",
     "patternLabel": "(1)95xx",
     "minCode": 19500,
     "maxCode": 19599,
-    "description": "wheated mashbill bourbon"
+    "mashbillId": "wheated_bourbon",
+    "notes": null
   },
   {
     "id": "rule-053",
     "patternLabel": "203xx",
     "minCode": 20300,
     "maxCode": 20399,
-    "description": "a high rye rye"
+    "mashbillId": "high_rye_rye",
+    "notes": null
   },
   {
     "id": "rule-054",
     "patternLabel": "(2)07xx",
     "minCode": 20700,
     "maxCode": 20799,
-    "description": "high corn high entry proof"
+    "mashbillId": "high_corn_high_entry",
+    "notes": null
   },
   {
     "id": "rule-055",
     "patternLabel": "(2)25xx",
     "minCode": 22500,
     "maxCode": 22599,
-    "description": "original mashbill bourbon"
+    "mashbillId": "original_bourbon",
+    "notes": null
   },
   {
     "id": "rule-056",
     "patternLabel": "(2)26xx-31xx",
     "minCode": 22600,
     "maxCode": 23199,
-    "description": "high rye rye"
+    "mashbillId": "high_rye_rye",
+    "notes": null
   },
   {
     "id": "rule-057",
     "patternLabel": "253xx",
     "minCode": 25300,
     "maxCode": 25399,
-    "description": "experimental wheated mashbill in cured oak"
+    "mashbillId": "wheated_bourbon",
+    "notes": "Experimental wheated mashbill in cured oak"
   },
   {
     "id": "rule-058",
     "patternLabel": "(2)55xx",
     "minCode": 25500,
     "maxCode": 25599,
-    "description": "original mashbill bourbon"
+    "mashbillId": "original_bourbon",
+    "notes": null
   },
   {
     "id": "rule-059",
     "patternLabel": "(2)94xx",
     "minCode": 29400,
     "maxCode": 29499,
-    "description": "wheated mashbill bourbon"
+    "mashbillId": "wheated_bourbon",
+    "notes": null
   },
   {
     "id": "rule-060",
     "patternLabel": "321xx",
     "minCode": 32100,
     "maxCode": 32199,
-    "description": "four grain mashbill (55/12/18/15) in American oak"
+    "mashbillId": "four_grain_bourbon",
+    "notes": "Four grain mashbill (55/12/18/15) in American oak"
   },
   {
     "id": "rule-061",
     "patternLabel": "(3)38xx",
     "minCode": 33800,
     "maxCode": 33899,
-    "description": "original mashbill bourbon"
+    "mashbillId": "original_bourbon",
+    "notes": null
   },
   {
     "id": "rule-062",
     "patternLabel": "383xx",
     "minCode": 38300,
     "maxCode": 38399,
-    "description": "high rye bourbon mashbill (char 1)"
+    "mashbillId": "high_rye_bourbon",
+    "notes": "High rye bourbon mashbill with Char 1 barrels"
   }
 ]

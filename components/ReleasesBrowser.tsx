@@ -29,7 +29,8 @@ export default function ReleasesBrowser({ enrichedReleases }: ReleasesBrowserPro
         release.selectedFor?.toLowerCase().includes(query) ||
         release.city?.toLowerCase().includes(query) ||
         release.state?.toLowerCase().includes(query) ||
-        release.classification.description.toLowerCase().includes(query)
+        release.classification.mashbill?.displayName.toLowerCase().includes(query) ||
+        release.classification.mashbill?.whiskeyType.toLowerCase().includes(query)
       );
     });
   }, [enrichedReleases, searchQuery]);
@@ -101,7 +102,7 @@ export default function ReleasesBrowser({ enrichedReleases }: ReleasesBrowserPro
                 {/* Classification */}
                 <div className="mb-3">
                   <span className="inline-block bg-amber-900 bg-opacity-30 text-amber-300 px-3 py-1 rounded-full text-sm font-medium">
-                    {release.classification.description}
+                    {release.classification.mashbill?.displayName || "Unknown Mashbill"}
                   </span>
                 </div>
 

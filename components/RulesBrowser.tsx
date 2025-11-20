@@ -2,14 +2,24 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import type { BarrelRule } from "@/lib/types";
+import type { BarrelRule, Mashbill } from "@/lib/types";
 
 interface RulesBrowserProps {
   rules: BarrelRule[];
+  mashbills: Mashbill[];
 }
 
-export default function RulesBrowser({ rules }: RulesBrowserProps) {
+export default function RulesBrowser({ rules, mashbills }: RulesBrowserProps) {
   const [searchQuery, setSearchQuery] = useState("");
+
+  // Create a lookup map for mashbills by ID
+  const mashbillMap = useMemo(() => {
+    const map = new Map<string, Mashbill>();
+    mashbills.forEach((mashbill) => {
+      map.set(mashbill.id, mashbill);
+    });
+    return map;
+  }, [mashbills]);
 
   const filteredRules = useMemo(() => {
     if (!searchQuery.trim()) {
@@ -18,24 +28,32 @@ export default function RulesBrowser({ rules }: RulesBrowserProps) {
 
     const query = searchQuery.toLowerCase();
     return rules.filter((rule) => {
+      const mashbill = rule.mashbillId ? mashbillMap.get(rule.mashbillId) : null;
       return (
-        rule.description.toLowerCase().includes(query) ||
-        rule.patternLabel.toLowerCase().includes(query)
+        rule.patternLabel.toLowerCase().includes(query) ||
+        rule.notes?.toLowerCase().includes(query) ||
+        mashbill?.displayName.toLowerCase().includes(query) ||
+        mashbill?.whiskeyType.toLowerCase().includes(query)
       );
     });
-  }, [rules, searchQuery]);
+  }, [rules, searchQuery, mashbillMap]);
 
-  // Group rules by description (mashbill type) for better organization
+  // Group rules by mashbill for better organization
   const groupedRules = useMemo(() => {
-    const groups: Record<string, BarrelRule[]> = {};
+    const groups: Record<string, { mashbill: Mashbill | null; rules: BarrelRule[] }> = {};
+
     filteredRules.forEach((rule) => {
-      if (!groups[rule.description]) {
-        groups[rule.description] = [];
+      const mashbill = rule.mashbillId ? (mashbillMap.get(rule.mashbillId) || null) : null;
+      const key = mashbill?.id || "unknown";
+
+      if (!groups[key]) {
+        groups[key] = { mashbill, rules: [] };
       }
-      groups[rule.description].push(rule);
+      groups[key].rules.push(rule);
     });
+
     return groups;
-  }, [filteredRules]);
+  }, [filteredRules, mashbillMap]);
 
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100">
@@ -54,7 +72,7 @@ export default function RulesBrowser({ rules }: RulesBrowserProps) {
             Barrel Classification Rules
           </h1>
           <p className="text-gray-400">
-            Browse all {rules.length} Willett barrel code ranges and their classifications (canonical WFE data)
+            Browse all {rules.length} Willett barrel code ranges and their mashbill classifications
           </p>
         </div>
 
@@ -62,7 +80,7 @@ export default function RulesBrowser({ rules }: RulesBrowserProps) {
         <div className="mb-8">
           <input
             type="text"
-            placeholder="Search by classification type or barrel range..."
+            placeholder="Search by mashbill name, barrel range, or whiskey type..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
@@ -80,15 +98,49 @@ export default function RulesBrowser({ rules }: RulesBrowserProps) {
         ) : (
           <div className="space-y-8">
             {Object.entries(groupedRules)
-              .sort(([a], [b]) => a.localeCompare(b))
-              .map(([description, rulesInGroup]) => (
-                <div key={description} className="bg-gray-800 rounded-lg border border-gray-700">
+              .sort(([aKey, aGroup], [bKey, bGroup]) => {
+                // Sort: knowns first (alphabetically), then unknowns
+                if (aKey === "unknown") return 1;
+                if (bKey === "unknown") return -1;
+                const aName = aGroup.mashbill?.displayName || "";
+                const bName = bGroup.mashbill?.displayName || "";
+                return aName.localeCompare(bName);
+              })
+              .map(([key, group]) => (
+                <div key={key} className="bg-gray-800 rounded-lg border border-gray-700">
                   {/* Group Header */}
                   <div className="bg-amber-900 bg-opacity-20 px-6 py-4 border-b border-gray-700">
-                    <h2 className="text-xl font-bold text-amber-400">{description}</h2>
-                    <p className="text-sm text-gray-400 mt-1">
-                      {rulesInGroup.length} {rulesInGroup.length === 1 ? "range" : "ranges"}
-                    </p>
+                    {group.mashbill ? (
+                      <>
+                        <h2 className="text-2xl font-bold text-amber-400 mb-1">
+                          {group.mashbill.displayName}
+                        </h2>
+                        <p className="text-gray-400 capitalize mb-2">
+                          {group.mashbill.whiskeyType}
+                        </p>
+                        <div className="flex flex-wrap gap-4 text-sm">
+                          <span className="text-gray-300">
+                            <span className="text-gray-500">Grain Bill:</span> {group.mashbill.grainBill.corn}% corn, {group.mashbill.grainBill.rye}% rye, {group.mashbill.grainBill.wheat}% wheat, {group.mashbill.grainBill.maltedBarley}% malted barley
+                          </span>
+                          <span className="text-gray-300">
+                            <span className="text-gray-500">Entry Proof:</span> {group.mashbill.entryProof ? `${group.mashbill.entryProof} proof` : "Not specified"}
+                          </span>
+                          <span className="text-gray-300 uppercase">
+                            <span className="text-gray-500">Status:</span> <span className="text-amber-400">{group.mashbill.status}</span>
+                          </span>
+                        </div>
+                        <p className="text-sm text-gray-400 mt-3">
+                          {group.rules.length} barrel {group.rules.length === 1 ? "range" : "ranges"}
+                        </p>
+                      </>
+                    ) : (
+                      <>
+                        <h2 className="text-2xl font-bold text-gray-400 mb-1">Unknown Mashbill</h2>
+                        <p className="text-sm text-gray-500">
+                          {group.rules.length} barrel {group.rules.length === 1 ? "range" : "ranges"} with unidentified mashbills
+                        </p>
+                      </>
+                    )}
                   </div>
 
                   {/* Rules Table */}
@@ -102,10 +154,13 @@ export default function RulesBrowser({ rules }: RulesBrowserProps) {
                           <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                             Range
                           </th>
+                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                            Notes
+                          </th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-gray-700">
-                        {rulesInGroup
+                        {group.rules
                           .sort((a, b) => a.minCode - b.minCode)
                           .map((rule) => (
                             <tr key={rule.id} className="hover:bg-gray-750 transition-colors">
@@ -117,6 +172,11 @@ export default function RulesBrowser({ rules }: RulesBrowserProps) {
                               <td className="px-6 py-4 whitespace-nowrap">
                                 <span className="text-gray-300 font-mono text-sm">
                                   {rule.minCode} - {rule.maxCode}
+                                </span>
+                              </td>
+                              <td className="px-6 py-4">
+                                <span className="text-gray-400 text-sm">
+                                  {rule.notes || "-"}
                                 </span>
                               </td>
                             </tr>
