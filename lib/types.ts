@@ -1,14 +1,12 @@
 import { z } from "zod";
 
-// Zod schema for barrel classification rules
+// Zod schema for barrel classification rules (canonical WFE data)
 export const BarrelRuleSchema = z.object({
   id: z.string(),
+  patternLabel: z.string(), // e.g. "9x-12x", "(1)22xx", "604?-62xx"
   minCode: z.number(),
   maxCode: z.number(),
-  patternLabel: z.string(), // e.g. "90xx-91xx", "17xx", "321xx"
-  mashbillType: z.string(),
-  entryProofCategory: z.string().nullable(),
-  notes: z.string().nullable(),
+  description: z.string(), // Exact canonical text (e.g. "low rye rye", "orignal mashbill bourbon", "??? mashbill bourbon")
 });
 
 // Type inferred from schema
@@ -35,8 +33,6 @@ export type BarrelDecodeResult = {
   barrelCode: string;
   matched: boolean;
   rule: BarrelRule | null;
-  mashbillType: string;
-  entryProofCategory: string | null;
+  description: string; // The exact canonical description
   patternLabel: string | null;
-  notes: string | null;
 };

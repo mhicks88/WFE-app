@@ -48,7 +48,7 @@ export default function BarrelDecoder() {
             Decode Willett Family Estate barrel codes
           </p>
           <p className="text-gray-500">
-            Enter any barrel code to identify its mashbill type and classification
+            Enter any barrel code to identify its classification using canonical WFE data
           </p>
         </div>
 
@@ -95,46 +95,26 @@ export default function BarrelDecoder() {
 
               {result.matched ? (
                 <div className="space-y-4">
-                  {/* Mashbill Type */}
+                  {/* Classification */}
                   <div>
-                    <span className="text-sm text-gray-500 block mb-1">Mashbill Type</span>
+                    <span className="text-sm text-gray-500 block mb-1">Classification</span>
                     <span className="inline-block bg-amber-900 bg-opacity-30 text-amber-300 px-4 py-2 rounded-full text-lg font-semibold">
-                      {result.mashbillType}
+                      {result.description}
                     </span>
                   </div>
 
                   {/* Pattern Label */}
                   <div>
                     <span className="text-sm text-gray-500 block mb-1">Barrel Range</span>
-                    <span className="text-gray-100 text-lg font-medium">
+                    <span className="text-gray-100 text-lg font-medium font-mono">
                       {result.patternLabel}
                     </span>
                   </div>
-
-                  {/* Entry Proof Category */}
-                  {result.entryProofCategory && (
-                    <div>
-                      <span className="text-sm text-gray-500 block mb-1">Entry Proof Category</span>
-                      <span className="text-gray-100 text-lg font-medium">
-                        {result.entryProofCategory}
-                      </span>
-                    </div>
-                  )}
-
-                  {/* Notes */}
-                  {result.notes && (
-                    <div>
-                      <span className="text-sm text-gray-500 block mb-1">Notes</span>
-                      <span className="text-gray-300 italic">
-                        {result.notes}
-                      </span>
-                    </div>
-                  )}
                 </div>
               ) : (
                 <div className="text-center py-6">
                   <p className="text-gray-400 text-lg mb-2">No classification found</p>
-                  <p className="text-gray-500 text-sm">{result.notes}</p>
+                  <p className="text-gray-500 text-sm">This barrel code doesn't match any known WFE classification range</p>
                 </div>
               )}
             </div>

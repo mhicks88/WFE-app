@@ -113,9 +113,9 @@ export function getAllReleases(): WillettRelease[] {
 }
 
 /**
- * Decodes a barrel code and returns the matching rule
+ * Decodes a barrel code using canonical WFE classification data
  * @param barrelCode - The barrel code to decode
- * @returns Decode result with matching rule and classification
+ * @returns Decode result with matching rule and exact canonical description
  */
 export function decodeBarrel(barrelCode: string): BarrelDecodeResult {
   const code = parseInt(barrelCode, 10);
@@ -125,10 +125,8 @@ export function decodeBarrel(barrelCode: string): BarrelDecodeResult {
       barrelCode,
       matched: false,
       rule: null,
-      mashbillType: "unknown",
-      entryProofCategory: null,
+      description: "unknown",
       patternLabel: null,
-      notes: "invalid barrel code - not a number",
     };
   }
 
@@ -155,10 +153,8 @@ export function decodeBarrel(barrelCode: string): BarrelDecodeResult {
         barrelCode,
         matched: true,
         rule,
-        mashbillType: rule.mashbillType,
-        entryProofCategory: rule.entryProofCategory,
+        description: rule.description,
         patternLabel: rule.patternLabel,
-        notes: rule.notes,
       };
     }
   }
@@ -168,15 +164,13 @@ export function decodeBarrel(barrelCode: string): BarrelDecodeResult {
     barrelCode,
     matched: false,
     rule: null,
-    mashbillType: "unknown",
-    entryProofCategory: null,
+    description: "unknown",
     patternLabel: null,
-    notes: "no classification rule for this barrel range",
   };
 }
 
 /**
- * Searches barrel rules by mashbill type or pattern label
+ * Searches barrel rules by description or pattern label
  * @param query - Search query
  * @returns Matching rules
  */
@@ -190,9 +184,8 @@ export function searchBarrelRules(query: string): BarrelRule[] {
 
   return rules.filter((rule) => {
     return (
-      rule.mashbillType.toLowerCase().includes(lowerQuery) ||
-      rule.patternLabel.toLowerCase().includes(lowerQuery) ||
-      rule.notes?.toLowerCase().includes(lowerQuery)
+      rule.description.toLowerCase().includes(lowerQuery) ||
+      rule.patternLabel.toLowerCase().includes(lowerQuery)
     );
   });
 }

@@ -29,7 +29,7 @@ export default function ReleasesBrowser({ enrichedReleases }: ReleasesBrowserPro
         release.selectedFor?.toLowerCase().includes(query) ||
         release.city?.toLowerCase().includes(query) ||
         release.state?.toLowerCase().includes(query) ||
-        release.classification.mashbillType.toLowerCase().includes(query)
+        release.classification.description.toLowerCase().includes(query)
       );
     });
   }, [enrichedReleases, searchQuery]);
@@ -98,10 +98,10 @@ export default function ReleasesBrowser({ enrichedReleases }: ReleasesBrowserPro
                   {release.labelName}
                 </h4>
 
-                {/* Mashbill Type */}
+                {/* Classification */}
                 <div className="mb-3">
                   <span className="inline-block bg-amber-900 bg-opacity-30 text-amber-300 px-3 py-1 rounded-full text-sm font-medium">
-                    {release.classification.mashbillType}
+                    {release.classification.description}
                   </span>
                 </div>
 

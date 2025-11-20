@@ -19,21 +19,20 @@ export default function RulesBrowser({ rules }: RulesBrowserProps) {
     const query = searchQuery.toLowerCase();
     return rules.filter((rule) => {
       return (
-        rule.mashbillType.toLowerCase().includes(query) ||
-        rule.patternLabel.toLowerCase().includes(query) ||
-        rule.notes?.toLowerCase().includes(query)
+        rule.description.toLowerCase().includes(query) ||
+        rule.patternLabel.toLowerCase().includes(query)
       );
     });
   }, [rules, searchQuery]);
 
-  // Group rules by mashbill type for better organization
+  // Group rules by description (mashbill type) for better organization
   const groupedRules = useMemo(() => {
     const groups: Record<string, BarrelRule[]> = {};
     filteredRules.forEach((rule) => {
-      if (!groups[rule.mashbillType]) {
-        groups[rule.mashbillType] = [];
+      if (!groups[rule.description]) {
+        groups[rule.description] = [];
       }
-      groups[rule.mashbillType].push(rule);
+      groups[rule.description].push(rule);
     });
     return groups;
   }, [filteredRules]);
@@ -55,7 +54,7 @@ export default function RulesBrowser({ rules }: RulesBrowserProps) {
             Barrel Classification Rules
           </h1>
           <p className="text-gray-400">
-            Browse all {rules.length} Willett barrel code ranges and their classifications
+            Browse all {rules.length} Willett barrel code ranges and their classifications (canonical WFE data)
           </p>
         </div>
 
@@ -63,7 +62,7 @@ export default function RulesBrowser({ rules }: RulesBrowserProps) {
         <div className="mb-8">
           <input
             type="text"
-            placeholder="Search by mashbill type, range, or notes..."
+            placeholder="Search by classification type or barrel range..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
@@ -82,11 +81,11 @@ export default function RulesBrowser({ rules }: RulesBrowserProps) {
           <div className="space-y-8">
             {Object.entries(groupedRules)
               .sort(([a], [b]) => a.localeCompare(b))
-              .map(([mashbillType, rulesInGroup]) => (
-                <div key={mashbillType} className="bg-gray-800 rounded-lg border border-gray-700">
+              .map(([description, rulesInGroup]) => (
+                <div key={description} className="bg-gray-800 rounded-lg border border-gray-700">
                   {/* Group Header */}
                   <div className="bg-amber-900 bg-opacity-20 px-6 py-4 border-b border-gray-700">
-                    <h2 className="text-xl font-bold text-amber-400">{mashbillType}</h2>
+                    <h2 className="text-xl font-bold text-amber-400">{description}</h2>
                     <p className="text-sm text-gray-400 mt-1">
                       {rulesInGroup.length} {rulesInGroup.length === 1 ? "range" : "ranges"}
                     </p>
@@ -103,12 +102,6 @@ export default function RulesBrowser({ rules }: RulesBrowserProps) {
                           <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                             Range
                           </th>
-                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
-                            Entry Proof
-                          </th>
-                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
-                            Notes
-                          </th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-gray-700">
@@ -124,16 +117,6 @@ export default function RulesBrowser({ rules }: RulesBrowserProps) {
                               <td className="px-6 py-4 whitespace-nowrap">
                                 <span className="text-gray-300 font-mono text-sm">
                                   {rule.minCode} - {rule.maxCode}
-                                </span>
-                              </td>
-                              <td className="px-6 py-4 whitespace-nowrap">
-                                <span className="text-gray-300 text-sm">
-                                  {rule.entryProofCategory || "-"}
-                                </span>
-                              </td>
-                              <td className="px-6 py-4">
-                                <span className="text-gray-400 text-sm italic">
-                                  {rule.notes || "-"}
                                 </span>
                               </td>
                             </tr>
